@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.17.2",
+    "nodemon": "^3.1.10"
+  },
+  "name": "notebook-backend",
+  "version": "1.0.0",
+  "description": "this is simple nodebook ",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kushchaubey/notebook-backend.git"
+  },
+  "keywords": [
+    "nodejs",
+    "notebook-backend"
+  ],
+  "author": "Vikas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kushchaubey/notebook-backend/issues"
+  },
+  "homepage": "https://github.com/kushchaubey/notebook-backend#readme"
+}
