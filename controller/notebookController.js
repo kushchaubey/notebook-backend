@@ -1,8 +1,9 @@
 
 const Notebook = require("../model/notebook");
+const user = require("../model/user");
 exports.getAllBooks = (req,res,next)=>{
 
-    Notebook.find().sort({date:-1})
+    Notebook.find({user: req.user.userId }).sort({date:-1})
     .then((result)=>{
     
         res.status(200).json({"message": 'all books retrived', data:result});
@@ -23,13 +24,14 @@ exports.createBooks = (req,res,next)=>{
     const notebook = new Notebook({
         title:title,
         note:note,
+        user: req.user.userId
         
     })
 
     notebook.save()
     .then((result)=>{
           console.log(result);
-              res.status(201).json({"message": "note saved"});
+              res.status(201).json({"message": "note saved", data:result});
 
     })
     .catch(e=>{
@@ -45,7 +47,7 @@ exports.updateBook = (req,res,next)=>{
     const {title,note} = req.body
     const id = req.params.id
 
-   Notebook.findByIdAndUpdate(id,{title:title, note:note}, { new: true, runValidators: true }
+   Notebook.findByIdAndUpdate(  { _id: id, user: req.user.userId },{title:title, note:note}, { new: true, runValidators: true }
 )
    .then(updatedNote=>{
     console.log("updated: ", updatedNote);
@@ -64,7 +66,7 @@ exports.deleteBook = (req,res,next)=>{
 
     const id = req.params.id
 
-   Notebook.findByIdAndDelete(id)
+   Notebook.findByIdAndDelete(  { _id: id, user: req.user.userId })
    .then(deletedNote=>{
       console.log(deletedNote);
       if (!deletedNote) return res.status(404).json({ message: "Notebook not found" });
