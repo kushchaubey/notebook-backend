@@ -1,6 +1,6 @@
 const express = require("express");
 const routes = express.Router();
-const validation = require("../utils/validation");
+const validation = require("../middleware/validation");
 const noteBookController = require("../controller/notebookController")
 
 

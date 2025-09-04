@@ -8,8 +8,11 @@ app.use(express.urlencoded({ extended: true }));
 
 
 const notebookRoutes = require("./routes/routes")
+const userRoutes = require("./routes/userRoutes")
+
 
 app.use("/api/notebooks", notebookRoutes);
+app.use("/api/notebooks/user", userRoutes);
 
 app.use((req,res,next)=>{
 res.status(404).json({ error: "Route not found" });

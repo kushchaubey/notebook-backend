@@ -5,7 +5,7 @@ const User = require("../model/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-exports.signup = (req,res,next){
+exports.signup = (req,res,next)=>{
     
     const {userName, password} = req.body;
 

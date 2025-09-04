@@ -1,9 +1,10 @@
 const express = require("express");
+const userController = require("../controller/userController")
+const validation = require("../middleware/validation")
 
 const routes = express.Router();
 
-routes.get("/user/id",);
-routes.post("/register");
-routes.post("/login")
+routes.post("/signup",validation.userNameValidation,userController.signup);
+routes.post("/login",userController.login)
 
 module.exports = routes;
