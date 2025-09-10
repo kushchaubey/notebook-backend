@@ -1,11 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors  = require("cors");
 const app = express();
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+// CORS config
+app.use(cors({
+  origin: "http://localhost:5173", // tumhara frontend origin
+  credentials: true, // cookies/auth headers allow
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"] // yaha Content-Type zaroor add karo
+}));
 
 const notebookRoutes = require("./routes/routes")
 const userRoutes = require("./routes/userRoutes")
