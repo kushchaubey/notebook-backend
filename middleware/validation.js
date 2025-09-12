@@ -46,7 +46,7 @@ exports.userNameValidation = (req,res,next)=>{
   
      const userName = req.body.userName;
      if(!userName || userName.trim() === ""){
-      return res.status(400).json({"message":"id is not defined"})
+      return res.status(400).json({"message":"userName is not defined"})
      }
 
   User.findOne({ userName })

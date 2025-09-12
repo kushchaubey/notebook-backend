@@ -6,5 +6,6 @@ const routes = express.Router();
 
 routes.post("/signup",validation.userNameValidation,userController.signup);
 routes.post("/login",userController.login)
+routes.post("/checkuserName",validation.userNameValidation,userController.checkUserName)
 
 module.exports = routes;
