@@ -20,11 +20,11 @@ exports.getAllBooks = (req,res,next)=>{
 exports.createBooks = (req,res,next)=>{
 
     const {title, note} = req.body;
-
+    
     const notebook = new Notebook({
         title:title,
         note:note,
-        user: req.user.userId
+        user: req.user.userID
         
     })
 
@@ -47,7 +47,7 @@ exports.updateBook = (req,res,next)=>{
     const {title,note} = req.body
     const id = req.params.id
 
-   Notebook.findByIdAndUpdate(  { _id: id, user: req.user.userId },{title:title, note:note}, { new: true, runValidators: true }
+   Notebook.findByIdAndUpdate(  { _id: id, user: req.user.userID },{title:title, note:note}, { new: true, runValidators: true }
 )
    .then(updatedNote=>{
     console.log("updated: ", updatedNote);
@@ -66,7 +66,7 @@ exports.deleteBook = (req,res,next)=>{
 
     const id = req.params.id
 
-   Notebook.findByIdAndDelete(  { _id: id, user: req.user.userId })
+   Notebook.findByIdAndDelete(  { _id: id, user: req.user.userID })
    .then(deletedNote=>{
       console.log(deletedNote);
       if (!deletedNote) return res.status(404).json({ message: "Notebook not found" });
