@@ -5,6 +5,7 @@ const noteBookController = require("../controller/notebookController")
 const auth = require("../middleware/auth")
 
 routes.get('/', auth, noteBookController.getAllBooks);
+routes.get('/:id', auth, noteBookController.getBookById);
 routes.post('/', auth,  validation.notebookValidation, noteBookController.createBooks);
 routes.put('/update/:id', auth, validation.idValidation , validation.notebookValidation, noteBookController.updateBook);
 routes.delete('/delete/:id',auth, validation.idValidation , noteBookController.deleteBook);

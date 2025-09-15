@@ -1,9 +1,26 @@
 
 const Notebook = require("../model/notebook");
 const user = require("../model/user");
+exports.getBookById = (req,res,next)=>{
+
+   const bookId =  req.params.id;
+
+    Notebook.findOne({_id:bookId, user: req.user.userID})
+    .then((result)=>{
+    
+        res.status(200).json({"message": 'books retrived', data:result});
+
+
+    })
+    .catch((e)=>{
+        console.log(e);
+        res.status(500).json({"message": 'something went wrong'});
+
+    })
+}
 exports.getAllBooks = (req,res,next)=>{
 
-    Notebook.find({user: req.user.userId }).sort({date:-1})
+    Notebook.find({user: req.user.userID }).sort({date:-1})
     .then((result)=>{
     
         res.status(200).json({"message": 'all books retrived', data:result});
